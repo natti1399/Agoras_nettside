@@ -91,7 +91,7 @@ const Contact = () => {
               })}
             </div>
 
-            <div className={`bg-white p-6 rounded-xl shadow-lg backdrop-blur-sm transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <div className="bg-white p-6 rounded-xl shadow-lg">
               <h4 className="font-bold text-[#741b1c] mb-2 flex items-center">
                 <CheckCircle className="h-5 w-5 mr-2" />
                 Gratis Konsultasjon
