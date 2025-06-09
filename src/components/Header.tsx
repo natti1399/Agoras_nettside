@@ -64,7 +64,7 @@ const Header = () => {
                 <img 
                   src="/Logo Upscaled.png" 
                   alt="Agoras Logo" 
-                  className="w-8 h-8 object-contain rounded-sm"
+                  className="w-8 h-8 object-contain rounded-md"
                 />
               </div>
               <div>
