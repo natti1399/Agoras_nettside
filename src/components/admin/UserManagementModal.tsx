@@ -21,6 +21,7 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
     phone: '',
     role: 'parent'
   });
+  const [originalEmail, setOriginalEmail] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -35,6 +36,7 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
         phone: user.phone || '',
         role: user.role || 'parent'
       });
+      setOriginalEmail(user.email || '');
     } else {
       setFormData({
         full_name: '',
@@ -42,6 +44,7 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
         phone: '',
         role: 'parent'
       });
+      setOriginalEmail('');
     }
     setError('');
     setShowDeleteConfirm(false);
@@ -62,18 +65,42 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
 
     try {
       if (isEditing) {
-        // Update existing user
-        const { error } = await supabase
+        // Check if email has changed
+        const emailChanged = formData.email !== originalEmail;
+        
+        if (emailChanged) {
+          // Update email in auth system first
+          const { error: authError } = await supabase.auth.admin.updateUserById(
+            user.id,
+            { email: formData.email }
+          );
+
+          if (authError) {
+            throw new Error(`Failed to update email in auth system: ${authError.message}`);
+          }
+        }
+
+        // Update profile information
+        const { error: profileError } = await supabase
           .from('profiles')
           .update({
             full_name: formData.full_name,
+            email: formData.email, // Update email in profiles table too
             phone: formData.phone,
             role: formData.role,
             updated_at: new Date().toISOString()
           })
           .eq('id', user.id);
 
-        if (error) throw error;
+        if (profileError) {
+          throw profileError;
+        }
+
+        if (emailChanged) {
+          // Note: In a production environment, you might want to send a confirmation email
+          // to the new email address before making the change permanent
+          console.log('Email updated successfully');
+        }
       } else {
         // Create new user - this would typically require admin privileges
         // For now, we'll show a message that this needs to be done through registration
@@ -85,6 +112,7 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
       onSuccess();
       onClose();
     } catch (err: any) {
+      console.error('Error updating user:', err);
       setError(err.message || 'En feil oppstod');
     } finally {
       setLoading(false);
@@ -102,13 +130,21 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
       await supabase.from('students').delete().eq('parent_id', user.id);
       await supabase.from('bookings').delete().eq('student_id', user.id);
       
-      // Then delete the profile
-      const { error } = await supabase
+      // Delete the profile
+      const { error: profileError } = await supabase
         .from('profiles')
         .delete()
         .eq('id', user.id);
 
-      if (error) throw error;
+      if (profileError) throw profileError;
+
+      // Delete from auth system (this requires admin privileges)
+      const { error: authError } = await supabase.auth.admin.deleteUser(user.id);
+      
+      if (authError) {
+        console.warn('Could not delete user from auth system:', authError.message);
+        // Continue anyway as the profile has been deleted
+      }
 
       onSuccess();
       onClose();
@@ -180,11 +216,18 @@ const UserManagementModal: React.FC<UserManagementModalProps> = ({
                   className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#741b1c] focus:border-transparent"
                   placeholder="E-postadresse"
                   required
-                  disabled={isEditing}
                 />
               </div>
-              {isEditing && (
-                <p className="text-xs text-gray-500 mt-1">E-post kan ikke endres</p>
+              {isEditing && formData.email !== originalEmail && (
+                <div className="mt-2 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+                  <div className="flex items-start space-x-2">
+                    <AlertTriangle className="h-4 w-4 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <div className="text-sm text-yellow-800">
+                      <p className="font-medium">Viktig:</p>
+                      <p>Endring av e-post vil oppdatere brukerens innloggingsinformasjon. Brukeren må logge inn med den nye e-postadressen.</p>
+                    </div>
+                  </div>
+                </div>
               )}
             </div>
 
