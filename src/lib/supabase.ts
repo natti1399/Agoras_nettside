@@ -50,7 +50,7 @@ export type Database = {
           parent_id: string;
           full_name: string;
           grade_level: string;
-          current_level: 'ungdomsskole' | 'videregaaende' | 'r1-r2';
+          current_level: 'ungdomsskole' | 'videregående' | 'r1-r2';
           plan_type: 'free' | 'standard' | 'pluss' | 'premium';
           goals: string | null;
           notes: string | null;
@@ -62,7 +62,7 @@ export type Database = {
           parent_id: string;
           full_name: string;
           grade_level: string;
-          current_level: 'ungdomsskole' | 'videregaaende' | 'r1-r2';
+          current_level: 'ungdomsskole' | 'videregående' | 'r1-r2';
           plan_type?: 'free' | 'standard' | 'pluss' | 'premium';
           goals?: string | null;
           notes?: string | null;
@@ -74,7 +74,7 @@ export type Database = {
           parent_id?: string;
           full_name?: string;
           grade_level?: string;
-          current_level?: 'ungdomsskole' | 'videregaaende' | 'r1-r2';
+          current_level?: 'ungdomsskole' | 'videregående' | 'r1-r2';
           plan_type?: 'free' | 'standard' | 'pluss' | 'premium';
           goals?: string | null;
           notes?: string | null;

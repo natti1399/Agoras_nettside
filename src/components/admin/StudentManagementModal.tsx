@@ -258,7 +258,7 @@ const StudentManagementModal: React.FC<StudentManagementModalProps> = ({
                 required
               >
                 <option value="ungdomsskole">Ungdomsskole</option>
-                <option value="videregaaende">Videregående</option>
+                <option value="videregående">Videregående</option>
                 <option value="r1-r2">R1 & R2</option>
               </select>
             </div>
