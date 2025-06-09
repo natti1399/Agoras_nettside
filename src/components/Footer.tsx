@@ -14,7 +14,7 @@ const Footer = () => {
                 <img 
                   src="../public/Logo Upscaled.png" 
                   alt="Agoras Logo" 
-                  className="w-6 h-6 object-contain filter brightness-0 invert"
+                  className="w-6 h-6 object-contain filter brightness-1 invert"
                 />
               </div>
               <div>
