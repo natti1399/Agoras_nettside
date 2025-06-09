@@ -63,6 +63,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // If signup was successful and we have a user, update their profile
     if (!error && data.user) {
       try {
+        // Update the user's profile
         const { error: profileError } = await supabase
           .from('profiles')
           .update({
@@ -76,6 +77,28 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (profileError) {
           console.error('Error updating profile:', profileError);
           return { error: profileError };
+        }
+
+        // If the user is registering as a student, also create a student record
+        if (role === 'student') {
+          const { error: studentError } = await supabase
+            .from('students')
+            .insert([{
+              id: data.user.id, // Use the user's ID as the student ID
+              parent_id: data.user.id, // Set parent_id to their own ID for self-registered students
+              full_name: fullName,
+              grade_level: 'Ikke oppgitt', // Default value since not collected during signup
+              current_level: 'ungdomsskole', // Default level
+              plan_type: 'free', // Default plan
+              goals: null,
+              notes: 'Selvregistrert elev' // Note to indicate this is a self-registered student
+            }]);
+
+          if (studentError) {
+            console.error('Error creating student record:', studentError);
+            // Don't return error here as the profile was created successfully
+            // The student record can be created manually later if needed
+          }
         }
       } catch (profileUpdateError) {
         console.error('Error in profile update:', profileUpdateError);
