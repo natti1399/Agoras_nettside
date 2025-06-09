@@ -198,7 +198,7 @@ const Contact = () => {
                 })}
               </div>
 
-              <div className="bg-white">
+              <div className="bg-white shadow-lg">
                 <h4 className="font-bold text-[#741b1c] mb-2 flex items-center">
                   <CheckCircle className="h-5 w-5 mr-2" />
                   Gratis Konsultasjon
