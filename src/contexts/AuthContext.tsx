@@ -63,28 +63,52 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     // If signup was successful and we have a user, update their profile
     if (!error && data.user) {
       try {
-        // Update the user's profile
+        // Map the role to the correct user_type enum value
+        let userType: 'student' | 'parent' | 'staff' | 'mentor' = 'parent';
+        if (role === 'student') userType = 'student';
+        else if (role === 'teacher') userType = 'mentor';
+        else if (role === 'admin') userType = 'staff';
+
+        // Split full name into first and last name
+        const nameParts = fullName.trim().split(' ');
+        const firstName = nameParts[0] || null;
+        const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : null;
+
+        // Update the user's profile in user_profiles table
         const { error: profileError } = await supabase
-          .from('profiles')
+          .from('user_profiles')
           .update({
-            full_name: fullName,
-            role: role,
-            plan_type: 'free', // Default plan for all new users
-            updated_at: new Date().toISOString()
+            first_name: firstName,
+            last_name: lastName,
+            user_type: userType,
           })
           .eq('id', data.user.id);
 
         if (profileError) {
-          console.error('Error updating profile:', profileError);
+          console.error('Error updating user profile:', profileError);
           return { error: profileError };
         }
 
-        // If the user is registering as a student, also create a student record
+        // If the user is registering as a student, create appropriate profile records
         if (role === 'student') {
+          // Create student profile
+          const { error: studentProfileError } = await supabase
+            .from('student_profiles')
+            .insert([{
+              user_id: data.user.id,
+              parent_id: data.user.id, // Set parent_id to their own ID for self-registered students
+              learning_goals: null,
+            }]);
+
+          if (studentProfileError) {
+            console.error('Error creating student profile:', studentProfileError);
+            // Don't return error here as the main profile was created successfully
+          }
+
+          // Create student record in the students table
           const { error: studentError } = await supabase
             .from('students')
             .insert([{
-              id: data.user.id, // Use the user's ID as the student ID
               parent_id: data.user.id, // Set parent_id to their own ID for self-registered students
               full_name: fullName,
               grade_level: 'Ikke oppgitt', // Default value since not collected during signup
@@ -97,7 +121,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           if (studentError) {
             console.error('Error creating student record:', studentError);
             // Don't return error here as the profile was created successfully
-            // The student record can be created manually later if needed
+          }
+        }
+
+        // If the user is registering as a teacher/mentor, create staff profile
+        if (role === 'teacher') {
+          const { error: staffError } = await supabase
+            .from('staff_profiles')
+            .insert([{
+              user_id: data.user.id,
+              role: 'mentor',
+              qualifications: null,
+              subjects_taught: [],
+            }]);
+
+          if (staffError) {
+            console.error('Error creating staff profile:', staffError);
+            // Don't return error here as the main profile was created successfully
           }
         }
       } catch (profileUpdateError) {
