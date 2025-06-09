@@ -12,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-8 h-8 flex items-center justify-center">
                 <img 
-                  src="/Logo Upscaled.png" 
+                  src="../public/'Logo Upscaled.png'" 
                   alt="Agoras Logo" 
                   className="w-6 h-6 object-contain filter brightness-0 invert"
                 />
