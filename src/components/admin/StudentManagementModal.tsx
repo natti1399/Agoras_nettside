@@ -263,11 +263,12 @@ const StudentManagementModal: React.FC<StudentManagementModalProps> = ({
                 <option value="r1-r2">R1 & R2</option>
               </select>
             </div>
-            console.log('Plan Type dropdown section is being processed');
+            
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
                 Plan Type *
               </label>
+              console.log('Plan Type dropdown section is being processed');
               <div className="relative">
                 <CreditCard className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
                 <select
