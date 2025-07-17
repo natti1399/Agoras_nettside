@@ -1,56 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, User } from 'lucide-react';
-import { useAuth } from '../contexts/AuthContext';
-import { supabase } from '../lib/supabase';
-import AuthModal from './auth/AuthModal';
+import { Menu, X } from 'lucide-react';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const [userProfile, setUserProfile] = useState<any>(null);
   const location = useLocation();
-  const { user } = useAuth();
-
-  useEffect(() => {
-    if (user) {
-      fetchUserProfile();
-    } else {
-      setUserProfile(null);
-    }
-  }, [user]);
-
-  const fetchUserProfile = async () => {
-    try {
-      const { data: profileData } = await supabase
-        .from('profiles')
-        .select('*')
-        .eq('id', user?.id)
-        .single();
-      
-      setUserProfile(profileData);
-    } catch (error) {
-      console.error('Error fetching user profile:', error);
-    }
-  };
 
   const isActive = (path: string) => {
     return location.pathname === path;
-  };
-
-  const getDashboardRoute = () => {
-    if (!userProfile) return '/dashboard';
-    
-    switch (userProfile.role) {
-      case 'admin':
-        return '/admin-dashboard';
-      case 'teacher':
-        return '/mentor-dashboard';
-      case 'parent':
-      case 'student':
-      default:
-        return '/dashboard';
-    }
   };
 
   return (
@@ -117,29 +74,7 @@ const Header = () => {
               </Link>
             </nav>
 
-            {/* Auth Button */}
-            <div className="hidden md:flex items-center">
-              {user ? (
-                <Link
-                  to={getDashboardRoute()}
-                  className="bg-[#741b1c] text-white px-4 py-2 rounded-lg hover:bg-[#5a1415] transition-colors flex items-center space-x-2"
-                >
-                  <User className="h-4 w-4" />
-                  <span>
-                    {userProfile?.role === 'admin' ? 'Admin' :
-                     userProfile?.role === 'teacher' ? 'Mentor' : 'Dashboard'}
-                  </span>
-                </Link>
-              ) : (
-                <button
-                  onClick={() => setIsAuthModalOpen(true)}
-                  className="bg-[#741b1c] text-white px-4 py-2 rounded-lg hover:bg-[#5a1415] transition-colors flex items-center space-x-2"
-                >
-                  <User className="h-4 w-4" />
-                  <span>Logg Inn</span>
-                </button>
-              )}
-            </div>
+
 
             {/* Mobile Menu Button */}
             <button
@@ -190,37 +125,13 @@ const Header = () => {
                 >
                   Kontakt
                 </Link>
-                {user ? (
-                  <Link
-                    to={getDashboardRoute()}
-                    className="bg-[#741b1c] text-white px-4 py-2 rounded-lg hover:bg-[#5a1415] transition-colors flex items-center space-x-2 w-fit"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    <User className="h-4 w-4" />
-                    <span>
-                      {userProfile?.role === 'admin' ? 'Admin' :
-                       userProfile?.role === 'teacher' ? 'Mentor' : 'Dashboard'}
-                    </span>
-                  </Link>
-                ) : (
-                  <button
-                    onClick={() => {
-                      setIsAuthModalOpen(true);
-                      setIsMenuOpen(false);
-                    }}
-                    className="bg-[#741b1c] text-white px-4 py-2 rounded-lg hover:bg-[#5a1415] transition-colors flex items-center space-x-2 w-fit"
-                  >
-                    <User className="h-4 w-4" />
-                    <span>Logg Inn</span>
-                  </button>
-                )}
               </nav>
             </div>
           )}
         </div>
       </header>
 
-      <AuthModal isOpen={isAuthModalOpen} onClose={() => setIsAuthModalOpen(false)} />
+
     </>
   );
 };
