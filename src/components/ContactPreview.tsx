@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, MapPin, ArrowRight } from 'lucide-react';
+import { Mail, MapPin, ArrowRight, CheckCircle, Send } from 'lucide-react';
 
 const ContactPreview = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -31,16 +31,17 @@ const ContactPreview = () => {
             Ta Kontakt
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Klar for å starte din matematikkreise? Vi er her for å hjelpe deg!
+            Klar for å starte din matematikkreise? Jeg er her for å hjelpe deg!
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-[#741b1c] to-transparent mx-auto mt-4 rounded-full"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
           <div className={`transition-all duration-1000 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-            <h3 className="text-2xl font-bold text-gray-900 mb-8">
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">
               Kom i Kontakt
-            </h3>
+            </h2>
             
             <div className="space-y-6 mb-8">
               {[
@@ -60,28 +61,70 @@ const ContactPreview = () => {
                       <h4 className="font-semibold text-gray-900 group-hover:text-[#741b1c] transition-colors">
                         {contact.title}
                       </h4>
-                      <p className="text-gray-600">{contact.info}</p>
+                      <p className="text-gray-600 whitespace-pre-line">{contact.info}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <Link 
-              to="/kontakt"
-              className="inline-flex items-center bg-[#741b1c] text-white px-8 py-4 rounded-lg hover:bg-[#5a1415] transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
-            >
-              Kontakt Oss
-              <ArrowRight className="ml-2 h-5 w-5" />
-            </Link>
+            <div className="bg-white shadow-lg rounded-lg p-6">
+              <h4 className="font-bold text-[#741b1c] mb-2 flex items-center">
+                <CheckCircle className="h-5 w-5 mr-2" />
+                Gratis Konsultasjon
+              </h4>
+              <p className="text-gray-700 leading-relaxed">
+                Book en gratis 30-minutters konsultasjon hvor jeg vurderer elevens behov og 
+                lager en personlig læringsplan. Ingen forpliktelser!
+              </p>
+            </div>
           </div>
 
           <div className={`transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-            <img 
-              src="https://images.pexels.com/photos/5212329/pexels-photo-5212329.jpeg?auto=compress&cs=tinysrgb&w=600" 
-              alt="Contact us for mathematics tutoring"
-              className="rounded-xl shadow-lg w-full h-96 object-cover hover:scale-105 transition-transform duration-500"
-            />
+            {/* Contact Form Box */}
+            <div className="bg-white shadow-lg rounded-lg p-8">
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                Kontakt Meg
+              </h3>
+              <p className="text-gray-600 mb-6">
+                Klar for å starte din matematikkreise? Fyll ut kontaktskjemaet vårt for å komme i gang!
+              </p>
+              
+              <div className="mb-6">
+                <h4 className="font-semibold text-gray-900 mb-3">Hva kan du forvente?</h4>
+                <ul className="space-y-2 text-gray-600">
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                    Personlig tilpasset undervisning
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                    Fleksible tidspunkter
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                    Gratis konsultasjon
+                  </li>
+                  <li className="flex items-center">
+                    <CheckCircle className="h-4 w-4 text-green-500 mr-2 flex-shrink-0" />
+                    Rask respons
+                  </li>
+                </ul>
+              </div>
+
+              <a 
+                href="https://tally.so/r/31o4LW"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full inline-flex items-center justify-center bg-gradient-to-r from-[#741b1c] to-red-600 text-white px-6 py-4 rounded-lg hover:from-[#5a1415] hover:to-red-700 transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
+              >
+                <Send className="mr-2 h-5 w-5" />
+                Fyll ut kontaktskjema
+              </a>
+              <p className="text-sm text-gray-500 text-center mt-3">
+                Skjemaet åpnes i en ny fane
+              </p>
+            </div>
           </div>
         </div>
       </div>

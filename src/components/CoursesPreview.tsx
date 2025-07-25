@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Clock, Users, Star, Zap, ArrowRight, CheckCircle } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Clock, Users, Star, Zap, CheckCircle } from 'lucide-react';
 
 const CoursesPreview = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,13 +38,13 @@ const CoursesPreview = () => {
       description: 'Ideell for regelmessig oppfølging og stødig fremgang',
       features: [
         '2 undervisningstimer',
-        'Kartleggingsprøve',
+        'Tydelige læringsmål',
         'Skreddersydd undervisningsløp',
-        'Avbestillingsgaranti'
+        'Fysisk eller online'
       ],
       icon: Users,
       color: 'from-green-500 to-green-600',
-      popular: true
+      popular: false
     },
     {
       name: 'Pluss',
@@ -53,24 +53,27 @@ const CoursesPreview = () => {
       description: 'For elever som trenger ekstra støtte og tett oppfølging',
       features: [
         '4 undervisningstimer',
-        'Kartleggingsprøve',
+        'Tydelige læringsmål',
         'Skreddersydd undervisningsløp',
-        'Læringsrapport ved månedsslutt'
+        'Fysisk eller online',
+        'Fleksibel undervisning'
       ],
       icon: Star,
       color: 'from-purple-500 to-purple-600',
-      popular: false
+      popular: true
     },
     {
       name: 'Premium',
       price: '2900kr',
       period: '/mnd',
-      description: 'Vår mest omfattende pakke for maksimal læring',
+      description: 'Min mest omfattende pakke for maksimal læring',
       features: [
         '8 undervisningstimer',
-        'Læringsrapport ved månedsslutt',
-        'Egen læringsmappe',
-        'Prioritert support'
+        'Tydelige læringsmål',
+        'Skreddersydd undervisningsløp',
+        'Fysisk eller online',
+        'Fleksibel undervisning',
+        'Egen læringsmappe'
       ],
       icon: Zap,
       color: 'from-orange-500 to-orange-600',
@@ -85,7 +88,7 @@ const CoursesPreview = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className={`text-center mb-16 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-            Våre Pakker
+            Mine Pakker
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Velg den pakken som passer best for dine behov og mål
@@ -159,7 +162,7 @@ const CoursesPreview = () => {
               <span className="text-gray-600 ml-1">per time</span>
             </div>
             <p className="text-gray-600 mb-6">
-              Perfekt for å prøve oss ut eller for sporadisk hjelp. Ingen binding eller forpliktelser.
+              Perfekt for å prøve meg ut eller for sporadisk hjelp. Ingen binding eller forpliktelser.
             </p>
             <button 
               onClick={handleBookSingleLesson}
@@ -168,14 +171,6 @@ const CoursesPreview = () => {
               Book Enkelttime
             </button>
           </div>
-
-          <Link 
-            to="/kurs"
-            className="inline-flex items-center bg-[#741b1c] text-white px-8 py-4 rounded-lg hover:bg-[#5a1415] transition-all duration-300 font-semibold transform hover:scale-105 shadow-lg hover:shadow-xl"
-          >
-            Se Alle Pakker
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
         </div>
       </div>
     </section>

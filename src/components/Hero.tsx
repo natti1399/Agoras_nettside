@@ -34,10 +34,10 @@ const Hero = () => {
               Læring der du er
             </h1>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Synes du matematikk er komplisert? Kontakt oss i dag for å ta kontroll over matematikken! 
+              Synes du matematikk er komplisert? Kontakt meg i dag for å ta kontroll over matematikken! 
             </p>
             <p className="text-xl text-gray-600 mb-8 leading-relaxed">
-              Vi tilbyr privatundervisning en til en, hvor enn du måtte trenge det - både fysisk og online!
+              Jeg tilbyr privatundervisning en til en, hvor enn du måtte trenge det - både fysisk og online!
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <button 
@@ -53,7 +53,7 @@ const Hero = () => {
                 onClick={handleViewCourses}
                 className="border-2 border-[#741b1c] text-[#741b1c] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-[#741b1c] hover:text-white transition-all duration-300 transform hover:scale-105"
               >
-                Se Våre Kurs
+                Se Mine Kurs
               </button>
             </div>
           </div>
@@ -63,14 +63,11 @@ const Hero = () => {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-r from-[#741b1c] to-red-600 rounded-2xl transform rotate-3 scale-105 opacity-20"></div>
               <img 
-                src="https://images.pexels.com/photos/5212345/pexels-photo-5212345.jpeg?auto=compress&cs=tinysrgb&w=800" 
-                alt="Student learning mathematics" 
+                src="/Agoras hero.png" 
+                alt="Agoras matematikkundervisning" 
                 className="relative rounded-2xl shadow-2xl w-full h-96 object-cover transform hover:scale-105 transition-transform duration-500"
               />
-              <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg">
-                <div className="text-2xl font-bold text-[#741b1c]">95%</div>
-                <div className="text-sm text-gray-600">Suksessrate</div>
-              </div>
+
             </div>
           </div>
         </div>
@@ -86,14 +83,14 @@ const Hero = () => {
             },
             {
               icon: Users,
-              title: "Erfarne Lærere",
-              description: "Våre lærere har omfattende erfaring med det norske utdanningssystemet og viser dokumenterte resultater.",
+              title: "Erfaren Lærer",
+      description: "Jeg har omfattende erfaring med det norske utdanningssystemet og viser dokumenterte resultater.",
               delay: "delay-300"
             },
             {
               icon: Award,
-              title: "Garanterte Resultater",
-              description: "95% av våre elever oppnår karakterforbedring innen 3 måneder eller pengene tilbake.",
+              title: "Høy Kvalitet",
+              description: "100% av mine elever er svært fornøyd med undervisningen.",
               delay: "delay-500"
             }
           ].map((feature, index) => {

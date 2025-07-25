@@ -53,14 +53,14 @@ const Header = () => {
                 Kurs
               </Link>
               <Link 
-                to="/om-oss" 
+                to="/om-meg" 
                 className={`transition-colors font-medium ${
-                  isActive('/om-oss') 
+                  isActive('/om-meg') 
                     ? 'text-[#741b1c] border-b-2 border-[#741b1c] pb-1' 
                     : 'text-gray-700 hover:text-[#741b1c]'
                 }`}
               >
-                Om Oss
+                Om Meg
               </Link>
               <Link 
                 to="/kontakt" 
@@ -108,13 +108,13 @@ const Header = () => {
                   Kurs
                 </Link>
                 <Link 
-                  to="/om-oss" 
+                  to="/om-meg" 
                   className={`transition-colors font-medium ${
-                    isActive('/om-oss') ? 'text-[#741b1c]' : 'text-gray-700 hover:text-[#741b1c]'
+                    isActive('/om-meg') ? 'text-[#741b1c]' : 'text-gray-700 hover:text-[#741b1c]'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Om Oss
+                  Om Meg
                 </Link>
                 <Link 
                   to="/kontakt" 

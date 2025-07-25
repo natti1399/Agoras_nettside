@@ -23,7 +23,7 @@ const Footer = () => {
               </div>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
-              Vi hjelper elever fra Ungdomsskole til R2 med å mestre matematikk gjennom 
+              Jeg hjelper elever fra Ungdomsskole til R2 med å mestre matematikk gjennom 
               personlig tilpasset undervisning og beviselige resultater.
             </p>
             <div className="flex flex-col space-y-2">
@@ -43,8 +43,8 @@ const Footer = () => {
             <h4 className="font-semibold mb-4">Snarveier</h4>
             <ul className="space-y-2 text-gray-400">
               <li><Link to="/" className="hover:text-[#741b1c] transition-colors">Hjem</Link></li>
-              <li><Link to="/kurs" className="hover:text-[#741b1c] transition-colors">Våre Kurs</Link></li>
-              <li><Link to="/om-oss" className="hover:text-[#741b1c] transition-colors">Om Oss</Link></li>
+              <li><Link to="/kurs" className="hover:text-[#741b1c] transition-colors">Mine Kurs</Link></li>
+              <li><Link to="/om-meg" className="hover:text-[#741b1c] transition-colors">Om Meg</Link></li>
               <li><Link to="/kontakt" className="hover:text-[#741b1c] transition-colors">Kontakt</Link></li>
             </ul>
           </div>

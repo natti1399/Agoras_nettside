@@ -14,7 +14,7 @@ const Courses = () => {
       name: 'Enkelttime',
       price: '400kr',
       period: 'per time',
-      description: 'Perfekt for å prøve oss ut eller for sporadisk hjelp',
+      description: 'Perfekt for å prøve meg ut eller for sporadisk hjelp',
       features: [
         'En undervisningstime',
         'Fysisk eller online',
@@ -32,14 +32,13 @@ const Courses = () => {
       description: 'Ideell for regelmessig oppfølging og stødig fremgang',
       features: [
         '2 undervisningstimer',
-        'Kartleggingsprøve',
+        'Tydelige læringsmål',
         'Skreddersydd undervisningsløp',
-        'Avbestillingsgaranti',
         'Fysisk eller online'
       ],
       icon: Users,
       color: 'from-green-500 to-green-600',
-      popular: true
+      popular: false
     },
     {
       name: 'Pluss',
@@ -48,28 +47,26 @@ const Courses = () => {
       description: 'For elever som trenger ekstra støtte og tett oppfølging',
       features: [
         '4 undervisningstimer',
-        'Kartleggingsprøve',
+        'Tydelige læringsmål',
         'Skreddersydd undervisningsløp',
-        'Avbestillingsgaranti',
         'Fysisk eller online',
-        'Læringsrapport ved månedsslutt'
+        'Fleksibel undervisning'
       ],
       icon: Star,
       color: 'from-purple-500 to-purple-600',
-      popular: false
+      popular: true
     },
     {
       name: 'Premium',
       price: '2900kr',
       period: '/mnd',
-      description: 'Vår mest omfattende pakke for maksimal læring og fremgang',
+      description: 'Min mest omfattende pakke for maksimal læring og fremgang',
       features: [
         '8 undervisningstimer',
-        'Kartleggingsprøve',
+        'Tydelige læringsmål',
         'Skreddersydd undervisningsløp',
-        'Avbestillingsgaranti',
         'Fysisk eller online',
-        'Læringsrapport ved månedsslutt',
+        'Fleksibel undervisning',
         'Egen læringsmappe'
       ],
       icon: Zap,
@@ -91,13 +88,13 @@ const Courses = () => {
     },
     {
       icon: Award,
-      title: 'Kvalifiserte Lærere',
-      description: 'Alle våre lærere har relevant utdanning og dokumentert erfaring'
+      title: 'Kvalifisert Lærer',
+      description: 'Jeg har relevant utdanning og dokumentert erfaring'
     },
     {
       icon: CheckCircle,
-      title: 'Garanterte Resultater',
-      description: '95% av våre elever oppnår karakterforbedring innen 3 måneder'
+      title: 'Høy Kvalitet',
+      description: '100% av mine elever er svært fornøyd med undervisningen'
     }
   ];
 
@@ -113,7 +110,7 @@ const Courses = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className={`text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h1 className="text-4xl md:text-6xl font-bold text-gray-900 mb-6">
-              Våre <span className="text-[#741b1c]">Pakker</span>
+              Mine <span className="text-[#741b1c]">Pakker</span>
             </h1>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
               Velg den pakken som passer best for dine behov og mål
@@ -214,41 +211,36 @@ const Courses = () => {
           <div className={`text-center mb-12 transition-all duration-1000 delay-400 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <h2 className="text-3xl font-bold text-gray-900 mb-4">Hva Inkluderer Pakkene?</h2>
             <p className="text-xl text-gray-600">
-              Alle våre pakker er designet for å gi maksimal læring og fremgang
+              Alle mine pakker er designet for å gi maksimal læring og fremgang
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className={`bg-gray-50 p-8 rounded-xl transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Kartleggingsprøve</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Vi starter med en grundig kartlegging av elevens nåværende nivå, læringsstil og utfordringer. 
-                Dette gir oss grunnlaget for å lage en personlig tilpasset undervisningsplan.
-              </p>
-            </div>
-
-            <div className={`bg-gray-50 p-8 rounded-xl transition-all duration-1000 delay-600 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Skreddersydd Undervisningsløp</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Basert på kartleggingen lager vi et individuelt undervisningsløp som fokuserer på elevens 
-                spesifikke behov og mål, med jevnlig evaluering og justering underveis.
-              </p>
-            </div>
-
-            <div className={`bg-gray-50 p-8 rounded-xl transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Avbestillingsgaranti</h3>
-              <p className="text-gray-600 leading-relaxed">
-                Vi forstår at livet kan være uforutsigbart. Derfor tilbyr vi fleksibel avbestilling 
-                av timer med rimelig varsel, uten ekstra kostnader.
-              </p>
-            </div>
-
-            <div className={`bg-gray-50 p-8 rounded-xl transition-all duration-1000 delay-800 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Læringsrapport</h3>
-              <p className="text-gray-600 leading-relaxed">
-                For Pluss og Premium pakker får foreldre en detaljert månedlig rapport som viser 
-                elevens fremgang, områder for forbedring og anbefalinger for videre læring.
-              </p>
+          <div className="space-y-8">
+            <div className={`bg-gray-50 p-8 rounded-xl transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Skreddersydd undervisning</h3>
+              
+              <div className="space-y-6">
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">• Personlig undervisning</h4>
+                  <p className="text-gray-600 leading-relaxed ml-4">
+                    Undervisningen foregår en-til-en, enten fysisk eller online, slik at eleven får tett oppfølging.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">• Tydelige læringsmål</h4>
+                  <p className="text-gray-600 leading-relaxed ml-4">
+                    Hver elev får konkrete mål og fokusområder vi jobber systematisk med.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 mb-3">• Fleksibel undervisning</h4>
+                  <p className="text-gray-600 leading-relaxed ml-4">
+                    Velg selv mellom fysisk eller digital undervisning, tilpasset elevens timeplan.
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -262,14 +254,14 @@ const Courses = () => {
               Usikker på Hvilken Pakke som Passer?
             </h2>
             <p className="text-xl text-red-100 mb-8 max-w-2xl mx-auto">
-              Book en gratis konsultasjon så hjelper vi deg med å finne den perfekte løsningen
+              Book en gratis konsultasjon så hjelper jeg deg med å finne den perfekte løsningen
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="bg-white text-[#741b1c] px-8 py-4 rounded-lg text-lg font-semibold hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg">
                 Book Gratis Konsultasjon
               </button>
               <button className="border-2 border-white text-white px-8 py-4 rounded-lg text-lg font-semibold hover:bg-white hover:text-[#741b1c] transition-all duration-300 transform hover:scale-105">
-                Kontakt Oss
+                Kontakt Meg
               </button>
             </div>
           </div>

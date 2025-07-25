@@ -17,7 +17,7 @@ const AboutPreview = () => {
         if (entry.isIntersecting) {
           setIsVisible(true);
           // Animate counters
-          const targets = { students: 500, rating: 4.9, experience: 10, improvement: 95 };
+          const targets = { students: 20, rating: 100, experience: 3, improvement: 100 };
           const duration = 2000;
           const steps = 60;
           const stepTime = duration / steps;
@@ -28,7 +28,7 @@ const AboutPreview = () => {
             const progress = step / steps;
             setCounters({
               students: Math.floor(targets.students * progress),
-              rating: (targets.rating * progress).toFixed(1),
+              rating: Math.floor(targets.rating * progress),
               experience: Math.floor(targets.experience * progress),
               improvement: Math.floor(targets.improvement * progress)
             });
@@ -43,7 +43,7 @@ const AboutPreview = () => {
       { threshold: 0.1 }
     );
 
-    const element = document.getElementById('om-oss-preview');
+    const element = document.getElementById('om-meg-preview');
     if (element) observer.observe(element);
 
     return () => observer.disconnect();
@@ -51,13 +51,13 @@ const AboutPreview = () => {
 
   const stats = [
     { icon: Users, value: `${counters.students}+`, label: 'Fornøyde Elever' },
-    { icon: Star, value: `${counters.rating}/5`, label: 'Gjennomsnittlig Vurdering' },
     { icon: Clock, value: `${counters.experience}+`, label: 'År med Erfaring' },
-    { icon: Award, value: `${counters.improvement}%`, label: 'Karakterforbedring' }
+    { icon: Star, value: `${counters.rating}%`, label: 'Svært Fornøyd med Undervisningen' },
+    { icon: Award, value: `${counters.improvement}%`, label: 'Mener Innholdet er Relevant og Lett å Følge' }
   ];
 
   return (
-    <section id="om-oss-preview" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
+    <section id="om-meg-preview" className="py-20 bg-gradient-to-b from-gray-50 to-white relative overflow-hidden">
       <div className="absolute top-20 right-10 w-32 h-32 bg-[#741b1c] opacity-5 rounded-full blur-2xl"></div>
       <div className="absolute bottom-20 left-10 w-40 h-40 bg-[#741b1c] opacity-5 rounded-full blur-2xl"></div>
 
@@ -67,7 +67,7 @@ const AboutPreview = () => {
             Hvorfor Velge Agoras?
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Vi har hjulpet hundrevis av elever å mestre matematikk og nå sine akademiske mål
+            Jeg har hjulpet mange elever å mestre matematikk og nå sine akademiske mål
           </p>
           <div className="w-24 h-1 bg-gradient-to-r from-[#741b1c] to-transparent mx-auto mt-4 rounded-full"></div>
         </div>
@@ -94,23 +94,23 @@ const AboutPreview = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
             <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              Vår Tilnærming
+              Min Tilnærming
             </h3>
             <div className="space-y-4 text-gray-600 leading-relaxed">
               <p>
-                Vi starter alltid med en grundig vurdering av elevens nåværende nivå og læringsstil. 
-                Dette gir oss grunnlaget for å lage en personlig læringsplan som sikrer optimal progresjon.
+                Jeg starter alltid med en grundig vurdering av elevens nåværende nivå og læringsstil.
+        Dette gir meg grunnlaget for å lage en personlig læringsplan som sikrer optimal progresjon.
               </p>
               <p>
-                Våre erfarne lærere fokuserer på å gjøre matematikk relevant og forståelig gjennom 
+                Jeg fokuserer på å gjøre matematikk relevant og forståelig gjennom 
                 praktiske eksempler og øvelser som er tilpasset elevens interesser og fremtidige mål.
               </p>
             </div>
             <Link 
-              to="/om-oss"
+              to="/om-meg"
               className="inline-flex items-center mt-6 text-[#741b1c] font-semibold hover:text-red-600 transition-colors"
             >
-              Les mer om oss
+              Les mer om meg
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
           </div>
@@ -118,14 +118,10 @@ const AboutPreview = () => {
           <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
             <div className="relative">
               <img 
-                src="https://images.pexels.com/photos/5212703/pexels-photo-5212703.jpeg?auto=compress&cs=tinysrgb&w=600" 
-                alt="Mathematics learning environment"
-                className="rounded-2xl shadow-2xl w-full h-80 object-cover"
+                src="/Haakon portrait.png" 
+                alt="Håkon Ørås - Mathematics tutor"
+                className="rounded-2xl shadow-2xl w-full h-96 object-cover object-top"
               />
-              <div className="absolute -bottom-4 -right-4 bg-white p-4 rounded-xl shadow-lg">
-                <div className="text-2xl font-bold text-[#741b1c]">95%</div>
-                <div className="text-sm text-gray-600">Suksessrate</div>
-              </div>
             </div>
           </div>
         </div>
